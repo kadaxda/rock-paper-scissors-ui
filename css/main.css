@@ -1,0 +1,42 @@
+
+
+
+input[type="button"] {
+    background-color:black ;
+    font-size: 4em;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1em;
+    
+}
+
+h1 {
+    font-size: 4em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.score {
+    padding-top: 3em;
+    color: black;
+    font-weight: 800;
+    margin-bottom: 5em;
+    
+}
+
+.intro {
+    
+    color: black;
+    font-weight: bold;
+}
+
+body {
+    border: 5px solid black;
+    font-family: sans-serif;
+    text-align: center;
+    background-color: white;
+}

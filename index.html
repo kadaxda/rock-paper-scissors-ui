@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>by kadaxda</p>
+<div class="intro">
+    <h1>Lets play a round rock paper scissors till 5!</h1>
+    <p>Just press a button to begin!</p>
+</div>
+    <input type="button" id="rbtn" value="ROCK">
+    <input type="button" id="pbtn" value="PAPER">
+    <input type="button" id="sbtn" value="SCISSORS">
+    <link rel="stylesheet" href="css/main.css">
+<div class="score">
+    <div id="playerPicked"></div>
+    <div id="pcPicked"></div>
+    <div id="res"></div>
+    <div id="score"></div>
+</div>
+    <script>
+        let gamesWon = 0;
+        let gamesLost = 0;
+        let gamesPlayed = 0;
+
+    function getRandomInt(max){
+        return Math.floor(Math.random() * Math.floor(max));
+     }
+    function computerPlay() {
+            let computerNum = getRandomInt(3);
+            let computerPick = "";
+
+            if (computerNum == 0) {
+                return "rock";
+            }
+            else if (computerNum == 1) {
+                return "scissors";
+            }
+            else {
+                return "paper";
+            }
+        
+    }
+
+
+    function playOneRound(playerSelection, computerSelection) {
+        playerSelection = playerSelection.toLowerCase();
+        computerSelection = computerSelection.toLowerCase();
+
+            if (playerSelection == "rock" && computerSelection == "paper") {
+                gamesLost += 1;
+                gamesPlayed += 1;
+                
+                return "You loose! Paper beats Rock!";
+                
+            }
+            else if (playerSelection == "paper" && computerSelection == "rock") {
+                gamesWon += 1;
+                gamesPlayed += 1;
+                
+                return "You Win! Paper beats Rock!";
+                
+            }
+            else if (playerSelection == "scissors" && computerSelection == "rock") {
+                gamesLost += 1;
+                gamesPlayed += 1;
+                return "You Loose! Rock beats Scissors!";
+
+            }
+            else if (playerSelection == "rock" && computerSelection == "scissors") {
+                gamesWon += 1;
+                gamesPlayed += 1;
+                return "You Win! Rock beats Scissors!";
+
+            }
+            else if (playerSelection == "paper" && computerSelection == "scissors") {
+                gamesLost += 1;
+                gamesPlayed += 1;
+                return "You Loose! Scissors beats Paper!";
+
+            }
+            else if (playerSelection == "scissors" && computerSelection == "paper") {
+                gamesWon += 1;
+                gamesPlayed += 1;
+                return "You Win! Scissors beats Paper!";
+
+            }
+            else {
+                gamesPlayed += 1;
+                return "Its a tie!";
+
+            }
+    }
+
+    rbtn= document.querySelector("#rbtn")
+    pbtn= document.querySelector("#pbtn")
+    sbtn= document.querySelector("#sbtn")
+
+
+    function game(playerPick) {
+        let computerPick = computerPlay();
+        pcPicked.textContent = "The PC picked " + computerPick;
+        res.textContent = (playOneRound(playerPick, computerPick));
+        score.textContent = "Won: " + gamesWon + " Games Lost: " + gamesLost + " Games played: " + gamesPlayed;
+        if (gamesWon == 5) {
+            score.textContent = "Wow, you did it! You won!";
+        } else if (gamesLost == 5) {
+            score.textContent = "Damn, the Pc won...";
+        }
+    }
+
+    rbtn.addEventListener('click', () => {
+    playerPicked.textContent = "You picked rock!";
+    game("rock");
+    }   ); 
+
+    pbtn.addEventListener('click', () => {
+        playerPicked.textContent = "You picked paper!";
+    game("paper");
+    }   ); 
+
+    sbtn.addEventListener('click', () => {
+        playerPicked.textContent = "You picked scissors!";
+    game("scissors");
+    }   ); 
+
+
+    let playerPicked = document.querySelector("#playerPicked");
+    let pcPicked = document.querySelector("#pcPicked")
+    let res = document.querySelector("#res")
+    let score = document.querySelector("#score")
+
+    </script>
+</body>
+</html>
